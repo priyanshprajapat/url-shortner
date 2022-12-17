@@ -1,5 +1,12 @@
 # URL Shortener
 A simple replit database based open source url-shorterner.
+## Some Demo 
+- <a href="https://mitly.ml">mitly.ml</a> 
+- <a href="https://linkfy.tk">linkfy.tk</a> 
+- <a href="https://linnk.ga">linnk.ga</a> 
+- <a href="https://linkfy.gq">linkfy.gq</a>
+- <a href="https://ooon.ga">ooon.ga</a> 
+- <a href="https://ppan.ga">ppan.ga</a>
 # Features
 It's a simple-looking URL shortener based on replit DB. The key feature is if you made any short link with this script even if your replit project gets slept the link will still work.
 ## Necessary steps
@@ -15,3 +22,4 @@ If you want you can join my discord server from [here](https://www.priyansh.xyz/
 Bytheway you can also star ⭐ this repository if you want.
 ## Credit
 Inspired from [bit.ly](https://bit.ly) :) & created by [Priyansh](https://www.priyansh.xyz) with ♥️
+
