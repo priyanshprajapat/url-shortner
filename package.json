@@ -1,23 +1,24 @@
 { 
-   "name": "url-shortener", 
-   "version": "1.0.0", 
-   "description": "A simple replit database based open source url-shorterner.", 
-   "main": "index.js", 
-   "dependencies": { 
-     "@replit/database": "^2.0.2", 
-     "express": "^4.18.1", 
-     "express-slow-down": "^1.4.0", 
-     "humanize-duration": "^3.27.1", 
-     "random-words": "^1.1.2", 
-     "sanitize-html": "^2.7.0", 
-     "slugify": "^1.6.5", 
-     "valid-url": "^1.0.9" 
-   }, 
-   "devDependencies": {}, 
-   "scripts": { 
-     "test": "mocha" 
-   }, 
-   "keywords": [], 
-   "author": "Priyansh", 
-   "license": "ISC" 
+   "name": "url-shortener", 
+   "version": "1.0.0", 
+   "description": "A simple replit database based open source url-shorterner.", 
+   "main": "index.js", 
+   "dependencies": { 
+     "@replit/database": "^2.0.2", 
+     "express": "^4.18.1", 
+     "express-slow-down": "^1.4.0", 
+     "humanize-duration": "^3.27.1", 
+     "random-words": "^1.1.2", 
+     "sanitize-html": "^2.7.0", 
+     "slugify": "^1.6.5", 
+     "valid-url": "^1.0.9" 
+       }, 
+   "devDependencies": {}, 
+   "scripts": {
+     "start": "node index.js",
+     "test": "mocha" 
+   }, 
+   "keywords": [], 
+   "author": "Priyansh", 
+   "license": "Apache License 2.0" 
  }
