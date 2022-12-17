@@ -1,4 +1,4 @@
-const ID_MIN_LENGTH = 3;
+const ID_MIN_LENGTH = 2;
 const ID_MAX_LENGTH = 20;
 const ID_LENGTH = ID_MIN_LENGTH;
 
@@ -8,8 +8,8 @@ const ID_LENGTH = ID_MIN_LENGTH;
 const RESERVED = ["n", "l"];
 
 // === CHANGE THESE TO YOUR OWN DOMAIN ===
-const DEFAULT_HOST = "url.priyansh.xyz";
-const DEFAULT_BASE = "https://www.priyansh.xyz/";
+const DEFAULT_HOST = "linkfy.gq";
+const DEFAULT_BASE = "https://priyansh.is-a.dev";
 
 // If true, list page will be disabled. Stats page will work.
 // Note: if this is false, password-protected links will be disabled.
@@ -28,9 +28,9 @@ const mySecret = process.env['DROP_KEY'];
 const htmlhead = `
 <!doctype html>
 <head>
-<link rel="shortcut icon" href="https://cdn.priyansh.xyz/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="https://priyansh.pages.dev/c/favicon/priyansh.ico" type="image/x-icon"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Priyansh URL Shortner</title>
+<title>URL Shortner</title>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -41,7 +41,13 @@ const htmlhead = `
 a { word-break: break-word }
 
 body { 
-background-image: url(https://media.discordapp.net/attachments/839115531457396758/1027814115307159562/urlbg.jpg);
+background-image: url(https://priyansh.pages.dev/c/bg/db24d8.jpg);
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;);
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 display: flex;
 margin: 0; padding: 0;
 align-items: center;
@@ -54,7 +60,19 @@ line-height: 1.5;
 
 div.container { background-color: #FFF; margin:20px; padding: 20px; max-width: 700px; border-radius: 10px; }
 
-input, button { border: none; padding: 5px; border-radius: 3px; border: 2px solid #EEE; margin: 2px; width: 100% }
+input, button {  border: none; padding: 5px; border-radius: 3px; border: 2px solid #EEE; margin: 2px; width: 100% }
+
+select {  border: none; padding: 5px; border-radius: 3px; border: 2px solid #EEE; margin: 2px; width: 45% }
+
+.custom {  border: none; padding: 5px; border-radius: 3px; border: 2px solid #EEE; margin: 2px; width: 50% }
+
+select{
+  direction: rtl;
+}
+select option{
+  direction:ltr;
+}
+
 
 input[type=submit], button {font-size: 0.9rem; color: white;background-color: #9046CF;border: none; margin-top: 15px}
 
@@ -111,7 +129,10 @@ h1 {margin:0}
 
 const htmlend = `
 <footer><hr>
-<subtitle style="font-size:0.8rem;color:darkgray">Created by Priyansh <a href="${DEFAULT_BASE}">Home</a> | <a href="https://www.priyansh.xyz/discord">Discord</a> | <a href="https://github.com/priyanshdotxyz">Github</a>
+<subtitle style="font-size:0.8rem;color:darkgray">Made by<a href="https://priyansh.xyz">Priyansh |</a>  <a href="https://github.com/priyanshprajapat/url-shortner">GitHub</a> | <a href="https://priyansh.xyz/donate">Donate</a>
+<br>
+</subtitle>
+<subtitle style="font-size:0.8rem;color:darkgray">Similar Service<a href="https://linkfy.tk">linkfy.tk</a> | <a href="https://linnk.ga">linnk.ga</a> | <a href="https://mitly.ml">mitly.ml</a> | <a href="https://ooon.ga">ooon.ga</a> | <a href="https://ppan.ga">ppan.ga</a>
 </subtitle></footer>
 </div>
 </body>
@@ -218,7 +239,14 @@ app.get("/", async (req, res) => {
 
       <form action="n" method="GET" autocomplete="off">
         <label>Current URL<br/><input type="url" name="url" placeholder="https://example.com" required></label><br/>
-        <label>Custom ID<br/><input type="text" name="id" autocomplete="false" minlength="${ID_MIN_LENGTH}" maxlength="${ID_MAX_LENGTH}"></label><br/>
+        <label>Custom ID (Optional)<br/><select size="1" name="links" onchange="window.location.href=this.value;">
+<option value="https://linkfy.gq" selected>https://linkfy.gq/</option>
+<option value="https://linkfy.tk" disabled>https://linkfy.tk</option>
+<option value="https://linnk.ga" disabled>https://linnk.ga</option>
+<option value="https://mitly.ml" disabled>https://mitly.ml</option>
+<option value="https://ooon.ga" disabled>https://ooon.ga</option>
+<option value="https://ppan.ga" disabled>https://ppan.ga</option>
+</select><input class="custom" type="text" placeholder="cool-ending" name="id" autocomplete="false" minlength="${ID_MIN_LENGTH}" maxlength="${ID_MAX_LENGTH}"></label><br/>
         <input type="submit">
       </form><br/>
 
@@ -232,11 +260,34 @@ app.get("/", async (req, res) => {
 });
 
 // To list all URLs. May want to disable this route if you have many, unnecessary load.
-app.get("/l", async (req, res) => {
+
+app.get("/l", (req, res) => {
+  const reject = () => {
+    res.setHeader("www-authenticate", "Basic");
+    res.sendStatus(401);
+  };
+
+  const authorization = req.headers.authorization;
+
+  if (!authorization) {
+    return reject();
+  }
+
+  const [username, password] = Buffer.from(
+    authorization.replace("Basic ", ""),
+    "base64"
+  )
+    .toString()
+    .split(":");
+
+  if (!(username === process.env.username || "spicydevs" && password === process.env.password || "password")) {
+
+  return reject();
+  }
 
   if (KEEP_LINKS_SECRET && ( req.query.key !== mySecret )) { return res.status(401).end(htmlhead + "<b class=errorbox>Sorry, the URL list is disabled for privacy. Ask the server operator for more information.</b>" + htmlend) }
 
-  const all = await client.getAll();
+  const all = client.getAll();
   const base = "https://" + req.get('host') + "/";
   const listed = Object.keys(all).map(k => all[k]);
 
@@ -255,23 +306,6 @@ app.get("/l", async (req, res) => {
   ` + htmlTable(listed) + htmlend);
 });
 
-// List all URLs in CSV format. Useful for export.
-app.get("/l.csv", async (req, res) => {
-
-  if (KEEP_LINKS_SECRET && ( req.query.key !== mySecret )) {return res.sendStatus(401)}
-  
-  const all = await client.getAll();
-  const csv = Object.keys(all).map(k => Object.keys(all[k]).map(k2 => all[k][k2]).join(",")).join("\n")
-
-  res.end(csv)
-
-});
-
-// List all URLs in JSON format. Useful for export. This is basically get a DB dump.
-app.get("/l.json", async (req, res) => {
-  if (KEEP_LINKS_SECRET && ( req.query.key !== mySecret )) {return res.sendStatus(401)}
-  res.json(await client.getAll());
-});
 
 // New URL
 // Note that this takes an optional `key` GET parameter which will disable all checking of the link ID.
@@ -350,7 +384,7 @@ app.get("/n", async (req, res) => {
 
   }
 
-  if (!override && (await client.get(newId))) {
+  if (override && (await client.get(newId))) {
     return res.status(409).json({ success: false, message: "URL with specified ID already exists." })
   }
 
