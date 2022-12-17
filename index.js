@@ -129,10 +129,10 @@ h1 {margin:0}
 
 const htmlend = `
 <footer><hr>
-<subtitle style="font-size:0.8rem;color:darkgray">Made by<a href="https://priyansh.xyz">Priyansh |</a>  <a href="https://github.com/priyanshprajapat/url-shortner">GitHub</a> | <a href="https://priyansh.xyz/donate">Donate</a>
+<subtitle style="font-size:0.8rem;color:darkgray">Made by <a href="https://priyansh.xyz">Priyansh |</a>  <a href="https://github.com/priyanshprajapat/url-shortner">GitHub</a> | <a href="https://priyansh.xyz/donate">Donate</a> | <a href="https://discord.com/invite/VWUh7KuCwy">Discord</a>
 <br>
 </subtitle>
-<subtitle style="font-size:0.8rem;color:darkgray">Similar Service<a href="https://linkfy.tk">linkfy.tk</a> | <a href="https://linnk.ga">linnk.ga</a> | <a href="https://mitly.ml">mitly.ml</a> | <a href="https://ooon.ga">ooon.ga</a> | <a href="https://ppan.ga">ppan.ga</a>
+<subtitle style="font-size:0.8rem;color:darkgray">Similar Service <a href="https://linkfy.tk">linkfy.tk</a> | <a href="https://linnk.ga">linnk.ga</a> | <a href="https://mitly.ml">mitly.ml</a> | <a href="https://ooon.ga">ooon.ga</a> | <a href="https://ppan.ga">ppan.ga</a>
 </subtitle></footer>
 </div>
 </body>
