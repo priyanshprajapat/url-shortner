@@ -240,7 +240,7 @@ app.get("/", async (req, res) => {
       <form action="n" method="GET" autocomplete="off">
         <label>Current URL<br/><input type="url" name="url" placeholder="https://example.com" required></label><br/>
         <label>Custom ID (Optional)<br/><select size="1" name="links" onchange="window.location.href=this.value;">
-<option value="https://linkfy.gq" selected>https://linkfy.gq/</option>
+<option value="https://linkfy.gq" selected>https://linkfy.gq</option>
 <option value="https://linkfy.tk" disabled>https://linkfy.tk</option>
 <option value="https://linnk.ga" disabled>https://linnk.ga</option>
 <option value="https://mitly.ml" disabled>https://mitly.ml</option>
